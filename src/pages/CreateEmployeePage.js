@@ -1,16 +1,19 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [birthDate, setBirthDate] = useState("")
-  const [startDate, setStartDate] = useState("")
+  const [birthDate, setBirthDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(new Date())
   const [street, setStreet] = useState("")
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
   const [zipCode, setZipCode] = useState("")
   const [department, setDepartment] = useState("Sales")
+
   console.log({
     firstName,
     lastName,
@@ -22,6 +25,7 @@ export default function CreateEmployeePage() {
     zipCode,
     department,
   })
+
   return (
     <div>
       <div className="title">
@@ -48,19 +52,18 @@ export default function CreateEmployeePage() {
           />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
+
+          <DatePicker
             id="date-of-birth"
-            type="text"
+            selected={birthDate}
+            onChange={(date) => setBirthDate(date)}
           />
 
           <label htmlFor="start-date">Start Date</label>
-          <input
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+          <DatePicker
             id="start-date"
-            type="text"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
           />
 
           <fieldset className="address">
