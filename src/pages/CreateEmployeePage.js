@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import StateSelector from "../components/StatesSelector"
+import { STATES } from "../utils/mocks"
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
@@ -15,15 +17,15 @@ export default function CreateEmployeePage() {
   const [department, setDepartment] = useState("Sales")
 
   console.log({
-    firstName,
-    lastName,
-    birthDate,
-    startDate,
-    street,
-    city,
+    // firstName,
+    // lastName,
+    // birthDate,
+    // startDate,
+    // street,
+    // city,
     state,
-    zipCode,
-    department,
+    // zipCode,
+    // department,
   })
 
   return (
@@ -85,13 +87,13 @@ export default function CreateEmployeePage() {
               type="text"
             />
 
-            <label htmlFor="state">State</label>
-            <select
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              name="state"
-              id="state"
-            ></select>
+            <StateSelector
+              states={STATES}
+              state={state}
+              onSelect={(s) => {
+                setState(s)
+              }}
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
