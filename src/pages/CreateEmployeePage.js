@@ -7,6 +7,20 @@ import { STATES } from "../utils/mocks"
 import { createEmployee } from "../features/employees"
 import { useSelector, useDispatch } from "react-redux"
 import { selectEmployees } from "../selectors"
+import Modal from "react-modal"
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+}
+
+Modal.setAppElement("#root")
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
@@ -23,6 +37,17 @@ export default function CreateEmployeePage() {
   const navigate = useNavigate()
   console.log("22222222222222222222222222222222", employees)
   const dispatch = useDispatch()
+
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
   function saveEmployee() {
     console.log({
       firstName,
@@ -53,7 +78,7 @@ export default function CreateEmployeePage() {
         department,
       })
     )
-    navigate("/employees")
+    openModal()
   }
 
   return (
@@ -149,9 +174,15 @@ export default function CreateEmployeePage() {
 
         <button onClick={saveEmployee}>Save</button>
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="New employee"
+      >
+        <h3>Employee created!</h3>
+        <button onClick={closeModal}>Ok!</button>
+      </Modal>
     </div>
   )
 }
