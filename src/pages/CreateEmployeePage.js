@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import StateSelector from "../components/StatesSelector"
@@ -20,6 +20,7 @@ export default function CreateEmployeePage() {
   const [department, setDepartment] = useState("Sales")
 
   const employees = useSelector(selectEmployees)
+  const navigate = useNavigate()
   console.log("22222222222222222222222222222222", employees)
   const dispatch = useDispatch()
   function saveEmployee() {
@@ -52,6 +53,7 @@ export default function CreateEmployeePage() {
         department,
       })
     )
+    navigate("/employees")
   }
 
   return (
