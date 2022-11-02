@@ -4,6 +4,9 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import StateSelector from "../components/StatesSelector"
 import { STATES } from "../utils/mocks"
+import { createEmployee } from "../features/employees"
+import { useSelector, useDispatch } from "react-redux"
+import { selectEmployees } from "../selectors"
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
@@ -16,17 +19,40 @@ export default function CreateEmployeePage() {
   const [zipCode, setZipCode] = useState("")
   const [department, setDepartment] = useState("Sales")
 
-  console.log({
-    // firstName,
-    // lastName,
-    // birthDate,
-    // startDate,
-    // street,
-    // city,
-    state,
-    // zipCode,
-    // department,
-  })
+  const employees = useSelector(selectEmployees)
+  console.log("22222222222222222222222222222222", employees)
+  const dispatch = useDispatch()
+  function saveEmployee() {
+    console.log({
+      firstName,
+      lastName,
+      birthDate,
+      startDate,
+      street,
+      city,
+      state,
+      zipCode,
+      department,
+    })
+    // importer l'action pour ajouter
+    // dispatch l'action
+    // voir si ca s'est ajoute dans le store
+
+    console.log("3333333333333333333333333333333333", employees)
+    dispatch(
+      createEmployee({
+        firstName,
+        lastName,
+        birthDate,
+        startDate,
+        street,
+        city,
+        state,
+        zipCode,
+        department,
+      })
+    )
+  }
 
   return (
     <div>
@@ -119,7 +145,7 @@ export default function CreateEmployeePage() {
           </select>
         </form>
 
-        <button onclick="saveEmployee()">Save</button>
+        <button onClick={saveEmployee}>Save</button>
       </div>
       <div id="confirmation" className="modal">
         Employee Created!
