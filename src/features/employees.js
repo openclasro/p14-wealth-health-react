@@ -2,7 +2,52 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const { actions, reducer } = createSlice({
   name: "employees",
-  initialState: [],
+  initialState: [
+    {
+      firstName: "asfsadf",
+      lastName: "asfd",
+      birthDate: "2022-11-02T19:01:50.583Z",
+      startDate: "2022-11-02T19:01:50.583Z",
+      street: "asdf",
+      city: "adsf",
+      state: "",
+      zipCode: "324234",
+      department: "Sales",
+    },
+    {
+      firstName: "asfsadf",
+      lastName: "asfd",
+      birthDate: "2022-11-02T19:01:50.583Z",
+      startDate: "2022-11-02T19:01:50.583Z",
+      street: "asdf",
+      city: "adsf",
+      state: "",
+      zipCode: "324234",
+      department: "Sales",
+    },
+    {
+      firstName: "asfsadf",
+      lastName: "asfd",
+      birthDate: "2022-11-02T19:01:50.583Z",
+      startDate: "2022-11-02T19:01:50.583Z",
+      street: "asdf",
+      city: "adsf",
+      state: "",
+      zipCode: "324234",
+      department: "Sales",
+    },
+    {
+      firstName: "xxx",
+      lastName: "ccc",
+      birthDate: "2022-11-02T19:01:50.583Z",
+      startDate: "2022-11-02T19:01:50.583Z",
+      street: "asdf",
+      city: "adsf",
+      state: "",
+      zipCode: "324234",
+      department: "Sales",
+    },
+  ],
   reducers: {
     createEmployee: (state, action) => {
       // payload: Nouvel employee
