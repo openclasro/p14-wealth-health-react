@@ -4,7 +4,12 @@ import { selectEmployees } from "../selectors"
 
 import React from "react"
 import styled from "styled-components"
-import { useTable, usePagination, useSortBy } from "react-table"
+import {
+  useTable,
+  usePagination,
+  useSortBy,
+  useGlobalFilter,
+} from "react-table"
 
 const columns = [
   {
@@ -96,6 +101,7 @@ const Styles = styled.div`
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -113,13 +119,15 @@ function Table({ columns, data }) {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    setGlobalFilter,
+    state: { pageIndex, pageSize, globalFilter },
   } = useTable(
     {
       columns,
       data,
       initialState: { pageIndex: 0 },
     },
+    useGlobalFilter,
     useSortBy,
     usePagination
   )
@@ -127,21 +135,11 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageIndex,
-              pageSize,
-              pageCount,
-              canNextPage,
-              canPreviousPage,
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
+      <input
+        type="text"
+        value={globalFilter || ""}
+        onChange={(e) => setGlobalFilter(e.target.value)}
+      />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
