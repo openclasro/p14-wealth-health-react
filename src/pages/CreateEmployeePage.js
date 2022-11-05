@@ -9,6 +9,7 @@ import { selectEmployees } from "../selectors"
 import TextInput from "../components/TextInput"
 import DatePicker from "../components/DatePicker"
 import EmployeeCreatedModal from "../components/EmployeeCreatedModal"
+import Select from "../components/Select"
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
@@ -141,19 +142,20 @@ export default function CreateEmployeePage() {
             />
           </fieldset>
 
-          <label htmlFor="department">Department</label>
-          <select
+          <Select
+            label="Department"
             value={department}
             onChange={(e) => setDepartment(e.target.value)}
             name="department"
             id="department"
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+            options={[
+              "Sales",
+              "Marketing",
+              "Engineering",
+              "Human Resources",
+              "Legal",
+            ]}
+          />
         </form>
 
         <button onClick={saveEmployee}>Save</button>
