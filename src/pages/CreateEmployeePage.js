@@ -6,22 +6,9 @@ import { STATES } from "../utils/mocks"
 import { createEmployee } from "../features/employees"
 import { useSelector, useDispatch } from "react-redux"
 import { selectEmployees } from "../selectors"
-import Modal from "react-modal"
 import TextInput from "../components/TextInput"
 import DatePicker from "../components/DatePicker"
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-}
-
-Modal.setAppElement("#root")
+import EmployeeCreatedModal from "../components/EmployeeCreatedModal"
 
 export default function CreateEmployeePage() {
   const [firstName, setFirstName] = useState("")
@@ -171,15 +158,8 @@ export default function CreateEmployeePage() {
 
         <button onClick={saveEmployee}>Save</button>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="New employee"
-      >
-        <h3>Employee created!</h3>
-        <button onClick={closeModal}>Ok!</button>
-      </Modal>
+
+      <EmployeeCreatedModal isOpen={modalIsOpen} onRequestClose={closeModal} />
     </div>
   )
 }
