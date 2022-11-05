@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import StateSelector from "arezki-states-selector"
 import { STATES } from "../utils/mocks"
@@ -9,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectEmployees } from "../selectors"
 import Modal from "react-modal"
 import TextInput from "../components/TextInput"
+import DatePicker from "../components/DatePicker"
 
 const customStyles = {
   content: {
@@ -104,15 +104,15 @@ export default function CreateEmployeePage() {
             id="last-name"
           />
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
           <DatePicker
+            label="Date of Birth"
             id="date-of-birth"
             selected={birthDate}
             onChange={(date) => setBirthDate(date)}
           />
 
-          <label htmlFor="start-date">Start Date</label>
           <DatePicker
+            label="Start Date"
             id="start-date"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
