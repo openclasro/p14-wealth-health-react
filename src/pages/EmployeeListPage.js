@@ -136,6 +136,7 @@ function Table({ columns, data }) {
   return (
     <>
       <input
+        placeholder="Type search keyword here..."
         type="text"
         value={globalFilter || ""}
         onChange={(e) => setGlobalFilter(e.target.value)}
