@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import StateSelector from "arezki-states-selector"
@@ -8,6 +8,7 @@ import { createEmployee } from "../features/employees"
 import { useSelector, useDispatch } from "react-redux"
 import { selectEmployees } from "../selectors"
 import Modal from "react-modal"
+import TextInput from "../components/TextInput"
 
 const customStyles = {
   content: {
@@ -34,7 +35,6 @@ export default function CreateEmployeePage() {
   const [department, setDepartment] = useState("Sales")
 
   const employees = useSelector(selectEmployees)
-  const navigate = useNavigate()
   console.log("22222222222222222222222222222222", employees)
   const dispatch = useDispatch()
 
@@ -69,8 +69,8 @@ export default function CreateEmployeePage() {
       createEmployee({
         firstName,
         lastName,
-        birthDate,
-        startDate,
+        birthDate: birthDate.toLocaleDateString(),
+        startDate: startDate.toLocaleDateString(),
         street,
         city,
         state,
@@ -90,24 +90,21 @@ export default function CreateEmployeePage() {
         <Link to="/employees">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee">
-          <label htmlFor="first-name">First Name</label>
-          <input
+          <TextInput
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            type="text"
+            label="First Name"
             id="first-name"
           />
 
-          <label htmlFor="last-name">Last Name</label>
-          <input
+          <TextInput
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            type="text"
+            label="Last Name"
             id="last-name"
           />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-
           <DatePicker
             id="date-of-birth"
             selected={birthDate}
@@ -124,16 +121,16 @@ export default function CreateEmployeePage() {
           <fieldset className="address">
             <legend>Address</legend>
 
-            <label htmlFor="street">Street</label>
-            <input
+            <TextInput
+              label="Street"
               value={street}
               onChange={(e) => setStreet(e.target.value)}
               id="street"
               type="text"
             />
 
-            <label htmlFor="city">City</label>
-            <input
+            <TextInput
+              label="City"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               id="city"
@@ -148,8 +145,8 @@ export default function CreateEmployeePage() {
               }}
             />
 
-            <label htmlFor="zip-code">Zip Code</label>
-            <input
+            <TextInput
+              label="Zip Code"
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
               id="zip-code"
