@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import "react-datepicker/dist/react-datepicker.css"
 import StateSelector from "arezki-states-selector"
+
 import { STATES } from "../utils/mocks"
 import { createEmployee } from "../features/employees"
 import { useSelector, useDispatch } from "react-redux"

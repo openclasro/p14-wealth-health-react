@@ -11,6 +11,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 }
+
 export default function EmployeeCreatedModal({ isOpen, onRequestClose }) {
   return (
     <Modal

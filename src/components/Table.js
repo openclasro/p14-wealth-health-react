@@ -7,45 +7,6 @@ import {
   useGlobalFilter,
 } from "react-table"
 
-const columns = [
-  {
-    Header: "First Name",
-    accessor: "firstName",
-  },
-  {
-    Header: "Last Name",
-    accessor: "lastName",
-  },
-  {
-    Header: "Birth date",
-    accessor: "birthDate",
-  },
-  {
-    Header: "Start date",
-    accessor: "startDate",
-  },
-  {
-    Header: "Street",
-    accessor: "street",
-  },
-  {
-    Header: "City",
-    accessor: "city",
-  },
-  {
-    Header: "State",
-    accessor: "state",
-  },
-  {
-    Header: "Zip code",
-    accessor: "zipCode",
-  },
-  {
-    Header: "Department",
-    accessor: "department",
-  },
-]
-
 const Styles = styled.div`
   padding: 1rem;
 
@@ -79,9 +40,7 @@ const Styles = styled.div`
   }
 `
 
-export default function Table({ data }) {
-  // Use the state and functions returned from useTable to build your UI
-
+export default function Table({ data, columns }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -110,9 +69,10 @@ export default function Table({ data }) {
     useGlobalFilter,
     useSortBy,
     usePagination
-  )
+  ) // Hook
 
   // Render the UI for your table
+  console.log(page)
   return (
     <Styles>
       <input
@@ -136,7 +96,7 @@ export default function Table({ data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
+          {page.map((row) => {
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
@@ -189,7 +149,7 @@ export default function Table({ data }) {
             setPageSize(Number(e.target.value))
           }}
         >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
