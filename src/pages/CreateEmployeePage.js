@@ -4,8 +4,7 @@ import StateSelector from "arezki-states-selector"
 
 import { STATES } from "../utils/mocks"
 import { createEmployee } from "../features/employees"
-import { useSelector, useDispatch } from "react-redux"
-import { selectEmployees } from "../selectors"
+import { useDispatch } from "react-redux"
 import TextInput from "../components/TextInput"
 import DatePicker from "../components/DatePicker"
 import EmployeeCreatedModal from "../components/EmployeeCreatedModal"
@@ -22,8 +21,6 @@ export default function CreateEmployeePage() {
   const [zipCode, setZipCode] = useState("")
   const [department, setDepartment] = useState("Sales")
 
-  const employees = useSelector(selectEmployees)
-  console.log("22222222222222222222222222222222", employees)
   const dispatch = useDispatch()
 
   const [modalIsOpen, setIsOpen] = useState(false)
@@ -52,7 +49,6 @@ export default function CreateEmployeePage() {
     // dispatch l'action
     // voir si ca s'est ajoute dans le store
 
-    console.log("3333333333333333333333333333333333", employees)
     dispatch(
       createEmployee({
         firstName,
@@ -128,8 +124,8 @@ export default function CreateEmployeePage() {
             <StateSelector
               states={STATES}
               state={state}
-              onSelect={(s) => {
-                setState(s)
+              onSelect={(state) => {
+                setState(state)
               }}
             />
 
