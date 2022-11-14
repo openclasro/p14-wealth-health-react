@@ -80,6 +80,11 @@ export default function Table({ data, columns }) {
         type="text"
         value={globalFilter || ""}
         onChange={(e) => setGlobalFilter(e.target.value)}
+        style={{
+          marginBottom: 16,
+          padding: 4,
+          borderRadius: 4,
+        }}
       />
       <table {...getTableProps()}>
         <thead>

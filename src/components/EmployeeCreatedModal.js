@@ -10,6 +10,9 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
+  overlay: {
+    backgroundColor: "rgba(52, 52, 52, 0.5)",
+  },
 }
 
 export default function EmployeeCreatedModal({ isOpen, onRequestClose }) {
